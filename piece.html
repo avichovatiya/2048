@@ -1,0 +1,248 @@
+<div class="gesture-container">
+    <p id="no-webcam">No webcam found. <br />
+        To use this demo, use a device with a webcam.</p>
+    <h2>Gesture Training</h2>
+    
+    <div class="button-panel">
+            <div class="btn train-button" id="train" >Train</div>
+            <div class="btn play-button" id="play" >Start Playing</div>
+
+    </div>
+    <div id="status">Loading mobilenet...</div>
+    <div id="train-status"></div>
+
+    <div class="webcam-box-inner">
+        <video autoplay playsinline muted id="webcam" width="224" height="224"></video>
+    </div>
+    <!-- Hyper params. -->
+    <div class="hyper-params">
+
+        <!-- Learning rate -->
+        <div class="dropdown">
+            <label>Learning rate</label>
+            <div class="select">
+                <select id="learningRate">
+                    <option value="0.00001">0.00001</option>
+                    <option selected value="0.0001">0.0001</option>
+                    <option value="0.01">0.001</option>
+                    <option value="0.03">0.003</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Batch size -->
+        <div class="dropdown">
+            <label>Batch size</label>
+            <div class="select">
+                <select id="batchSizeFraction">
+                    <option value="0.05">0.05</option>
+                    <option value="0.1">0.1</option>
+                    <option selected value="0.4">0.4</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Epochs -->
+        <div class="dropdown">
+            <label>Epochs</label>
+            <div class="select">
+                <select id="epochs">
+                    <option value="10">10</option>
+                    <option selected value="20">20</option>
+                    <option value="40">40</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Hidden units -->
+        <div class="dropdown">
+            <label>Hidden units</label>
+            <div class="select">
+                <select id="dense-units">
+                    <option value="10">10</option>
+                    <option selected value="100">100</option>
+                    <option value="200">200</option>
+                </select>
+            </div>
+        </div>
+
+    </div><!-- /.hyper-params -->
+
+    <div class="controller-panels" id="controller">
+
+    </div>
+
+    <div class="panel training-panel">
+
+        <div class="panel-row panel-row-top">
+
+            <div class="panel-cell panel-cell-center">
+                <div class="thumb-box">
+                    <div class="thumb-box-outer">
+                        <div class="thumb-box-inner">
+                            <canvas class="thumb" width=224 height=224 id="up-thumb"></canvas>
+                        </div>
+                        <button class="record-button" id="up" /><span>Add Sample</span></button>
+                    </div>
+                    <p>Move Up<br/>
+                        <span id="up-total">0</span> examples
+                    </p>
+                </div>
+            </div><!-- ./panel-cell -->
+            <div class="panel-cell panel-cell-left">
+                <div class="thumb-box">
+                    <div class="thumb-box-outer">
+                        <div class="thumb-box-inner">
+                            <canvas class="thumb" width=224 height=224 id="down-thumb"></canvas>
+                        </div>
+                        <button class="record-button" id="down" /><span>Add Sample</span></button>
+                    </div>
+                    <p>Move Down<br/>
+                        <span id="down-total">0</span> examples
+                    </p>
+                </div>
+            </div><!-- ./panel-cell -->
+            <div class="panel-cell panel-cell-center">
+                <div class="thumb-box">
+
+                    <div class="thumb-box-outer">
+                        <div class="thumb-box-inner">
+                            <canvas class="thumb" width=224 height=224 id="left-thumb"></canvas>
+                        </div>
+                        <button class="record-button" id="left" /><span>Add Sample</span></button>
+                    </div>
+                    <p>Move Left<br/>
+                        <span id="left-total">0</span> examples
+                    </p>
+                </div>
+            </div><!-- ./panel-cell -->
+            <div class="panel-cell panel-cell-center">
+                <div class="thumb-box">
+
+                    <div class="thumb-box-outer">
+                        <div class="thumb-box-inner">
+                            <canvas class="thumb" width=224 height=224 id="right-thumb"></canvas>
+                        </div>
+                        <button class="record-button" id="right" /><span>Add Sample</span></button>
+                    </div>
+                    <p>Move Right<br/>
+                        <span id="right-total">0</span> examples
+                    </p>
+                </div>
+            </div><!-- ./panel-cell -->
+            <div class="panel-cell panel-cell-center">
+                <div class="thumb-box">
+
+                    <div class="thumb-box-outer">
+                        <div class="thumb-box-inner">
+                            <canvas class="thumb" width=224 height=224 id="noaction-thumb"></canvas>
+                        </div>
+                        <button class="record-button" id="noaction" /><span>Add Sample</span></button>
+                    </div>
+                    <p>No Action<br/>
+                        <span id="noaction-total">0</span> examples
+                    </p>
+                </div>
+            </div><!-- ./panel-cell -->
+
+        </div><!-- /.panel-row -->
+        
+    </div><!-- /.panel -->
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!----------------------------------------------->
+<div class="panel training-panel">
+        
+    <div class="panel-row panel-row-top">
+
+        <div class="panel-cell panel-cell-center">
+            <div class="thumb-box">
+                <div class="thumb-box-outer">
+                    <div class="thumb-box-inner">
+                        <canvas class="thumb" width=224 height=224 id="up-thumb"></canvas>
+                    </div>
+                    <button class="record-button" id="up" /><span>Add Sample</span></button>
+                </div>
+                <p>Move Up<br/>
+                    <span id="up-total">0</span> examples
+                </p>
+            </div>
+        </div><!-- ./panel-cell -->
+        <div class="panel-cell panel-cell-left">
+            <div class="thumb-box">
+                <div class="thumb-box-outer">
+                    <div class="thumb-box-inner">
+                        <canvas class="thumb" width=224 height=224 id="down-thumb"></canvas>
+                    </div>
+                    <button class="record-button" id="down" /><span>Add Sample</span></button>
+                </div>
+                <p>Move Down<br/>
+                    <span id="down-total">0</span> examples
+                </p>
+            </div>
+        </div><!-- ./panel-cell -->
+        <div class="panel-cell panel-cell-center">
+            <div class="thumb-box">
+
+                <div class="thumb-box-outer">
+                    <div class="thumb-box-inner">
+                        <canvas class="thumb" width=224 height=224 id="left-thumb"></canvas>
+                    </div>
+                    <button class="record-button" id="left" /><span>Add Sample</span></button>
+                </div>
+                <p>Move Left<br/>
+                    <span id="left-total">0</span> examples
+                </p>
+            </div>
+        </div><!-- ./panel-cell -->
+        <div class="panel-cell panel-cell-center">
+            <div class="thumb-box">
+
+                <div class="thumb-box-outer">
+                    <div class="thumb-box-inner">
+                        <canvas class="thumb" width=224 height=224 id="right-thumb"></canvas>
+                    </div>
+                    <button class="record-button" id="right" /><span>Add Sample</span></button>
+                </div>
+                <p>Move Right<br/>
+                    <span id="right-total">0</span> examples
+                </p>
+            </div>
+        </div><!-- ./panel-cell -->
+        <div class="panel-cell panel-cell-center">
+            <div class="thumb-box">
+
+                <div class="thumb-box-outer">
+                    <div class="thumb-box-inner">
+                        <canvas class="thumb" width=224 height=224 id="noaction-thumb"></canvas>
+                    </div>
+                    <button class="record-button" id="noaction" /><span>Add Sample</span></button>
+                </div>
+                <p>No Action<br/>
+                    <span id="noaction-total">0</span> examples
+                </p>
+            </div>
+        </div><!-- ./panel-cell -->
+
+    </div><!-- /.panel-row -->
+    
+</div><!-- /.panel -->

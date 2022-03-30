@@ -1,0 +1,163 @@
+<doctype html>
+    <html>
+
+    <head>
+        <title> 2048 </title>
+        <link rel="stylesheet" type="text/css" href="2048.css">
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <meta charset="utf-8">
+
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js" crossorigin="anonymous"></script>
+            <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js" crossorigin="anonymous"></script>
+    </head>
+
+    <body>
+
+
+        <div id="container-2048" class="container">
+            <div class="heading">
+                <h1 class="title">2048</h1>
+                <div class="score-container">0</div>
+            </div>
+            <p class="game-intro">Join the numbers and get to the <strong>2048 tile!</strong></p>
+
+
+            <div class="game-container">
+                <div class="game-message">
+                    <p></p>
+                    <div class="lower">
+                        <a class="retry-button">Try again</a>
+                    </div>
+                </div>
+
+                <div class="grid-container">
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                    <div class="grid-row">
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                        <div class="grid-cell"></div>
+                    </div>
+                </div>
+
+                <div class="tile-container">
+
+                </div>
+            </div>
+        </div>
+
+        <div class="gesture-container">
+            <p id="no-webcam">No webcam found. <br />
+                To use this demo, use a device with a webcam.</p>
+            <h2></h2>
+            
+            <div class="button-panel">
+                    <div class="btn train-button" >Hand Gestures</div>
+            <div>
+
+            </div>     
+        
+            </div>
+            <!-- <div id="status">Loading mobilenet...</div> -->
+            <div id="train-status"></div>
+        
+            <div class="webcam-box-inner">
+                <video autoplay playsinline muted id="webcam" width="380" height="220" class="input_video" hidden></video>
+                <canvas class="output_canvas mt5" width="380px" height="220px"></canvas>
+             
+            </div>
+            <!-- Hyper params. -->
+            <div class="hyper-params">
+        
+                <!-- Learning rate -->
+                <div class="dropdown">
+                    <label>Learning rate</label>
+                    <div class="select">
+                        <select id="learningRate">
+                            <option value="0.00001">0.00001</option>
+                            <option selected value="0.0001">0.0001</option>
+                            <option value="0.01">0.001</option>
+                            <option value="0.03">0.003</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <!-- Batch size -->
+                <div class="dropdown">
+                    <label>Batch size</label>
+                    <div class="select">
+                        <select id="batchSizeFraction">
+                            <option value="0.05">0.05</option>
+                            <option value="0.1">0.1</option>
+                            <option selected value="0.4">0.4</option>
+                            <option value="1">1</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <!-- Epochs -->
+                <div class="dropdown">
+                    <label>Epochs</label>
+                    <div class="select">
+                        <select id="epochs">
+                            <option value="10">10</option>
+                            <option selected value="20">20</option>
+                            <option value="40">40</option>
+                        </select>
+                    </div>
+                </div>
+        
+                <!-- Hidden units -->
+                <div class="dropdown">
+                    <label>Hidden units</label>
+                    <div class="select">
+                        <select id="dense-units">
+                            <option value="10">10</option>
+                            <option selected value="100">100</option>
+                            <option value="200">200</option>
+                        </select>
+                    </div>
+                </div>
+        
+            </div><!-- /.hyper-params -->
+        
+            <div class="controller-panels" id="controller">
+        
+            </div>
+        
+
+        
+        
+        </div>
+
+               
+                <script src="helper.js"></script>
+        <script src="hammer.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@0.14.1/dist/tf.min.js"></script>
+        <script src="2048.js"></script>
+        <script src="webcam.js"></script>
+        <script src="controller_dataset.js"></script>
+        <!-- <script src="ui.js"></script> -->
+        <script src="script.js"></script>
+    </body>
+
+    </html>
